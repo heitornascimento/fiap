@@ -14,8 +14,10 @@ public class AuthResponse {
     @SerializedName("senha")
     private String mPassword;
 
+    private String mId;
 
-    public AuthResponse(){
+
+    public AuthResponse() {
 
     }
 
@@ -33,5 +35,13 @@ public class AuthResponse {
 
     public void setmPassword(String mPassword) {
         this.mPassword = mPassword;
+    }
+
+    public void setId(String id) {
+        mId = id;
+    }
+
+    public String getId() {
+        return mId;
     }
 }

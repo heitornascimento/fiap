@@ -29,8 +29,7 @@ public class FiapPresenter {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful()) {
-                    mView.onSuccess();
-                    Session.getInstance().setAuth(response.body());
+                    mView.onSuccess(response.body());
                 } else {
                     mView.onError();
                 }
@@ -46,7 +45,7 @@ public class FiapPresenter {
 
 
     public interface Callback {
-        void onSuccess();
+        void onSuccess(AuthResponse response);
 
         void onError();
     }

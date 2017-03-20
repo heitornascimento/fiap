@@ -2,6 +2,7 @@ package com.fiap.heitor.android.session;
 
 import com.fiap.heitor.android.model.AuthResponse;
 import com.fiap.heitor.android.model.User;
+import com.fiap.heitor.android.persistence.DAO;
 
 /**
  * Created by heitornascimento on 16/03/17.

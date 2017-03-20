@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.fiap.heitor.android.R;
+import com.fiap.heitor.android.exception.FiapDatabaseException;
 import com.fiap.heitor.android.model.AuthResponse;
+import com.fiap.heitor.android.model.User;
+import com.fiap.heitor.android.persistence.DAO;
 import com.fiap.heitor.android.session.Session;
 
 import butterknife.BindView;
@@ -39,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.login)
     public void login() {
         if (checkFieldValid() && checkCredentials()) {
-            Intent intent = new Intent(this, ListActivity.class);
+            Intent intent = new Intent(this, MainListActivity.class);
             startActivity(intent);
         }
     }
@@ -70,9 +73,23 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean checkCredentials() {
 
-        AuthResponse authResponse = Session.getInstance().getAuth();
-        if (authResponse != null) {
-            return mNameValue.equals(authResponse.getmUser()) && mPasswordValue.equals(authResponse.getmPassword());
+        AuthResponse auth = DAO.getInstance(this).findOneUserSession();
+        if (auth != null) {
+            boolean isCredentialsValid = mNameValue.equals(auth.getmUser())
+                    && mPasswordValue.equals(auth.getmPassword());
+
+            if (isCredentialsValid) {
+                User user = new User();
+                user.setName(mNameValue);
+                user.setPassword(mPasswordValue);
+                try {
+                    DAO.getInstance(this).saveUser(user);
+                } catch (FiapDatabaseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return isCredentialsValid;
         }
 
         return false;

@@ -10,4 +10,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.fiap.heitor.android.view.SplashScreen">
 
+    <ImageView
+        android:id="@+id/launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/geo_launcher" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/launcher"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Geo Finder - FIAP 2017" />
+
 </RelativeLayout>
