@@ -41,7 +41,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         mData.addAll(newData);
         mData = newData;
         notifyDataSetChanged();
-        Toast.makeText(mContext, "Atualozando", Toast.LENGTH_SHORT).show();
     }
 
 

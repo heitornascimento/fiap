@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fiap.heitor.android.R;
@@ -22,6 +23,7 @@ import com.fiap.heitor.android.adapter.LocationAdapter;
 import com.fiap.heitor.android.decorator.AboutApp;
 import com.fiap.heitor.android.decorator.DialogDecorator;
 import com.fiap.heitor.android.exception.FiapDatabaseException;
+import com.fiap.heitor.android.model.AuthResponse;
 import com.fiap.heitor.android.model.Place;
 import com.fiap.heitor.android.model.User;
 import com.fiap.heitor.android.persistence.DAO;
@@ -41,6 +43,8 @@ public class MainListActivity extends AppCompatActivity
     private LocationAdapter mAdapter;
     private List<Place> mData = new ArrayList<>();
 
+    NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +57,7 @@ public class MainListActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                newLocation("");
             }
         });
 
@@ -64,7 +67,7 @@ public class MainListActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         setupRecyclerView();
@@ -82,12 +85,22 @@ public class MainListActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         updateDataSource();
+        populateUserName();
     }
 
     private void updateDataSource() {
         setupRecyclerView();
         List<Place> refreshData = DAO.getInstance(this).listAll();
         mAdapter.updateData(refreshData);
+    }
+
+    private void populateUserName() {
+        User user = DAO.getInstance(this).findOneUser();
+        if (user != null) {
+            View headerLayout = navigationView.getHeaderView(0);
+            TextView userTextName = (TextView) headerLayout.findViewById(R.id.nav_title2);
+            userTextName.setText(getString(R.string.nav_user_name) + " " + user.getName());
+        }
     }
 
     @Override
@@ -100,12 +113,6 @@ public class MainListActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_list, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -140,13 +147,14 @@ public class MainListActivity extends AppCompatActivity
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+
         return true;
     }
 
 
     @Override
     public void edit(Place place) {
-        Toast.makeText(this, "Edit = " + place.getFeatureName(), Toast.LENGTH_SHORT).show();
         newLocation(place.getId());
     }
 

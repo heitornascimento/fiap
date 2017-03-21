@@ -3,4 +3,39 @@
 
 
     <string name="error_net">Erro ao carregar.</string>
+
+    <!-- Login -->
+    <string name="mandayory_field">Campo obrigatório</string>
+    <string name="name_field">Nome</string>
+    <string name="password_field">Senha</string>
+    <string name="login_label">Login</string>
+
+
+    <!-- Geo List -->
+    <string name="register_new">Nova Localização</string>
+    <string name="about">Sobre</string>
+    <string name="logout">Logout</string>
+    <string name="leave">Sair</string>
+
+
+    <!-- Location -->
+    <string name="lat">Latitude</string>
+    <string name="longi">Longitude</string>
+    <string name="location">Localização</string>
+    <string name="search_location">Procurar Localização</string>
+    <string name="save">Salvar</string>
+
+    <!-- Delete Dialog-->
+    <string name="delete">Remover</string>
+    <string name="cancel">Cancelar</string>
+    <string name="message_confirmation">Deseja remover a localização?</string>
+    <string name="title">Atenção</string>
+
+
+    <string name="error_login_message">Erro</string>
+    <string name="error_login_title">Usuário e/ou Senha Inválido</string>
+    <string name="error_login_button">Ok</string>
+
+
+    <string name="nav_user_name">Usuário:</string>
 </resources>

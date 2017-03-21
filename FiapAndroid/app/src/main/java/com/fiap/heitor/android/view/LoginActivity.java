@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.fiap.heitor.android.R;
+import com.fiap.heitor.android.decorator.ErrorLoginDialog;
 import com.fiap.heitor.android.exception.FiapDatabaseException;
 import com.fiap.heitor.android.model.AuthResponse;
 import com.fiap.heitor.android.model.User;
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         mNameValue = mName.getText().toString();
 
         if (mNameValue.isEmpty()) {
-            mNameLayout.setError("Campo Obrigatório");
+            mNameLayout.setError(getString(R.string.mandayory_field));
             return false;
         } else {
             mNameLayout.setError(null);
@@ -61,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordValue = mPassword.getText().toString();
 
         if (mPasswordValue.isEmpty()) {
-            mPasswordLayout.setError("Campo Obrigatório");
+            mPasswordLayout.setError(getString(R.string.mandayory_field));
             return false;
         } else {
             mPasswordLayout.setError(null);
@@ -87,6 +88,9 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (FiapDatabaseException e) {
                     e.printStackTrace();
                 }
+            } else {
+                ErrorLoginDialog errorLoginDialog = new ErrorLoginDialog(this);
+                errorLoginDialog.decorate();
             }
 
             return isCredentialsValid;

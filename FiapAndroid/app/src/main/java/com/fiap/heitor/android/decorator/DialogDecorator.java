@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
+import com.fiap.heitor.android.R;
 import com.fiap.heitor.android.view.MainListActivity;
 
 /**
@@ -26,21 +27,21 @@ public class DialogDecorator implements Decorator {
     @Override
     public void decorate() {
 
-        mDialog = new AlertDialog.Builder(mCtx).setPositiveButton("Deletar", new DialogInterface.OnClickListener() {
+        mDialog = new AlertDialog.Builder(mCtx).setPositiveButton(mCtx.getString(R.string.delete), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mOnDeleteListener.deletePlace(mId);
                 dialog.dismiss();
             }
-        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(mCtx.getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         }).create();
 
-        mDialog.setTitle("Atenção");
-        mDialog.setMessage("Deseja remover a localização?");
+        mDialog.setTitle(mCtx.getString(R.string.title));
+        mDialog.setMessage(mCtx.getString(R.string.message_confirmation));
 
         mDialog.show();
 

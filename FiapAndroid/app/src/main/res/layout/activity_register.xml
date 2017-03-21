@@ -15,7 +15,7 @@
         android:id="@+id/txtInputLayoutLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Lugar">
+        android:hint="@string/location">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/txtLocation"
@@ -32,22 +32,21 @@
         android:visibility="gone" />
 
 
-
     <Button
         android:id="@+id/findLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/location"
-        android:text="Procurar Localização" />
+        android:text="@string/search_location" />
 
     <Button
+        android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/location"
         android:layout_toRightOf="@+id/findLocation"
-        android:id="@+id/save"
-        android:text="Salvar"/>
+        android:text="@string/save" />
 
 
 </RelativeLayout>

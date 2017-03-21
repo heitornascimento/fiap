@@ -63,21 +63,22 @@ public class RegisterActivity extends AppCompatActivity implements GeoCodePresen
     @OnClick(R.id.save)
     public void saveLocation() {
         try {
-            if (mSinglePlace.getId() != null && !mSinglePlace.getId().isEmpty()) {
-                String newName = mTextInputLocation.getEditableText().toString();
-                mSinglePlace.setFeatureName(newName);
-                DAO.getInstance(this).update(mSinglePlace);
-            } else {
-                DAO.getInstance(this).save(mSinglePlace);
+            if (mSinglePlace != null) {
+                if (mSinglePlace.getId() != null && !mSinglePlace.getId().isEmpty()) {
+                    String newName = mTextInputLocation.getEditableText().toString();
+                    mSinglePlace.setFeatureName(newName);
+                    DAO.getInstance(this).update(mSinglePlace);
+                } else {
+                    DAO.getInstance(this).save(mSinglePlace);
+                }
+                finish();
             }
-            Toast.makeText(this, "Salvo", Toast.LENGTH_SHORT).show();
         } catch (FiapDatabaseException e) {
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
             //TODO
             e.printStackTrace();
         }
 
-        finish();
 
     }
 
@@ -99,8 +100,8 @@ public class RegisterActivity extends AppCompatActivity implements GeoCodePresen
     public void onSuccess(Place place) {
         mSinglePlace = place;
         mLocation.setVisibility(View.VISIBLE);
-        mLocation.setText("Latitude = " + place.getLatitude() +
-                "Longitude = " + place.getLongitude());
+        mLocation.setText(getString(R.string.lat) + " = " + place.getLatitude() +
+                getString(R.string.longi) + " = " + place.getLongitude());
     }
 
     @Override
