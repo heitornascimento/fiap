@@ -60,8 +60,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         final Place place = mData.get(position);
         if (place != null) {
             mViewHolder.txtLocationName.setText(place.getFeatureName());
-            mViewHolder.txtLatitude.setText(String.valueOf(place.getLatitude()));
-            mViewHolder.txtLongitude.setText(String.valueOf(place.getLongitude()));
+            mViewHolder.txtLatitude.setText("Lat: "+String.valueOf(place.getLatitude()));
+            mViewHolder.txtLongitude.setText("Long: "+String.valueOf(place.getLongitude()));
             mViewHolder.bindEdit(place, mListener);
             mViewHolder.bindDelete(place, mListener);
         }
