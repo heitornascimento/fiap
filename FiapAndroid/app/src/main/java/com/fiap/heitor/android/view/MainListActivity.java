@@ -143,7 +143,7 @@ public class MainListActivity extends AppCompatActivity
         } else if (id == R.id.logout) {
             logout();
         } else if (id == R.id.leave) {
-
+            closeApp();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -191,6 +191,13 @@ public class MainListActivity extends AppCompatActivity
             }
         }
 
+    }
+
+    private void closeApp() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
     }
 
 
