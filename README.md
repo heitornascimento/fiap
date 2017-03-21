@@ -1,7 +1,7 @@
 # Geo Finder - Fiap 12MOB Android 2017
 Small project for the Android module at Fiap Post Degree 2017.
 
-Geo Finder searchs of the latitude and longite of any text search input using Geo Coder api.
+Geo Finder searchs for the latitude and longite of any text search input using Geo Coder api.
 
 Screenshots:
 
