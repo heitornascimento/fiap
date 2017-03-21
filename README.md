@@ -5,5 +5,5 @@ Geo Finder search of the latitude and longite of any text search input using Geo
 
 Screenshots:
 
-![alt text](https://s30.postimg.org/8wbxhan6p/main1.png "Tela 1") 
+![alt text](https://s30.postimg.org/br4j2abqp/main1.png "Tela 1") 
  
